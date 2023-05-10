@@ -3,16 +3,25 @@
 
 namespace ariel{}
 
-#include <iostream>
-#include "Point.hpp"
+# include <iostream>
+# include "Point.hpp"
+
 
 class Character{
 
     private:
 
         std::string name;
+
+        friend class Cowboy;
+        friend class Ninja;
+
+    protected:
+
         Point location;
         int hitPoints;
+
+        void setHitPoints(int new_hp);
 
     public:
 
@@ -36,11 +45,9 @@ class Character{
         // Prints the name of the character, the number of its hit points, and the point where the character is.
         // If the character dies the number of its hit points will not be printed, and the character's name will appear in parentheses.
         // Before the name will appear a letter indicating the type of character: N for ninja and C for cowboy
-        void print();
-
-	    friend std::ostream &operator<<(std::ostream &output, const Character* chatacter);
-
+        virtual std::string print() const = 0;
 
 
 };
+
 #endif

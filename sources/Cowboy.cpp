@@ -14,7 +14,7 @@ Cowboy::Cowboy(std::string name, Point loc, int hp, int bullets)
 }
 
 // A cowboy is created with six bullets and 11 hit points.
-Cowboy::Cowboy(std::string name, Point loc) : Character(name, loc, 11), amountOfBullets(6)
+Cowboy::Cowboy(std::string name, Point loc) : Character(name, loc, 110), amountOfBullets(6)
 {
 
 }
@@ -26,6 +26,10 @@ Cowboy::~Cowboy()
 
 void Cowboy::shoot(Character* enemy)
 {
+    if(this->isAlive() && this->amountOfBullets > 0){
+        enemy->setHitPoints(enemy->getHitPoints() - 10);
+        this->amountOfBullets--;
+    }
 
 }
 
@@ -42,4 +46,14 @@ bool Cowboy::hasboolets()
 void Cowboy::reload()
 {
     // this->amountOfBullets += 6;
+}
+
+std::string Cowboy::print() const
+{
+    std::string output = this->identifier + ",";
+    return output;
+}
+
+int Cowboy::getBullets(){
+    return this->amountOfBullets;
 }

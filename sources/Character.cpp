@@ -50,14 +50,6 @@ int Character:: getHitPoints(){
     return this->hitPoints;
 }
 
-void Character::print()
-{
-
-}
-
-ostream &operator<<(ostream &output, const Character* character)
-{
-    Point loc = character.getLocation();
-	output << character.getName() << character.getHitPoints() << "(" << loc.getX() << "," << loc.getY();
-	return output;
+void Character::setHitPoints(int new_hp){
+    this->hitPoints = new_hp;
 }

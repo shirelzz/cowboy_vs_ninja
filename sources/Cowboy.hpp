@@ -5,6 +5,7 @@ namespace ariel{}
 
 # include <iostream>
 # include "Character.hpp"
+# include "Ninja.hpp"
 
 class Cowboy : public Character
 {
@@ -12,6 +13,10 @@ class Cowboy : public Character
     private:
 
         int amountOfBullets;
+        std::string identifier = "C";
+
+        // friend class Ninja;
+
 
     public:
 
@@ -32,6 +37,9 @@ class Cowboy : public Character
         // Loads the gun with six new bullets
         void reload();
 
+        virtual std::string print() const override;
+
+        int getBullets();
 
 
 };

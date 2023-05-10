@@ -46,12 +46,16 @@ int TeamBase::stillAlive()
     return 0;
 }
 
+
+
+
+
 //-------------- Team --------------//
 
 
-Team::Team() : TeamBase(){
+// Team::Team() : TeamBase(){
 
-}
+// }
 
 Team::Team(Character *leader) : TeamBase(leader)
 {
@@ -59,13 +63,13 @@ Team::Team(Character *leader) : TeamBase(leader)
 }
 
 
-Team::~Team()
-{
+// Team::~Team()
+// {
 
-}
+// }
 
 
-void Team::attack(Team *otherTeam) const {}
+void Team::attack(TeamBase *otherTeam) const {}
 
 void Team::print() const{}
 
@@ -75,12 +79,39 @@ void Team::print() const{}
 
 //-------------- Team 2 --------------//
 
+Team2::Team2(Character *leader) : TeamBase(leader)
+{
+
+}
+
+
+// Team2::~Team2()
+// {
+
+// }
+
 
 void Team2::print() const {
 
 }
 
-void Team2::attack(Team *otherTeam) const
+void Team2::attack(TeamBase *otherTeam) const
 {
 
 }
+
+
+//-------------- Smart Team --------------//
+
+SmartTeam::SmartTeam(Character *leader) : TeamBase(leader){
+
+}
+
+void SmartTeam::print() const{
+
+}
+
+void SmartTeam::attack(TeamBase *otherTeam) const{
+
+}
+

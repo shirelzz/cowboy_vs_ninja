@@ -1,11 +1,11 @@
-#ifndef TEAM_HPP
-#define TEAM_HPP
+#ifndef TEAMBASE_HPP
+#define TEAMBASE_HPP
 
 namespace ariel{}
 
-#include <iostream>
-#include <vector>
-#include "Character.hpp"
+# include <iostream>
+# include <vector>
+# include "Character.hpp"
 # include "Ninja.hpp"
 # include "Cowboy.hpp"
 
@@ -14,7 +14,7 @@ namespace ariel{}
 
 // When a team is created, it gets a pointer to the leader.
 
-class TeamBase{
+class TeamBase {
 
     private:
 
@@ -39,10 +39,10 @@ class TeamBase{
         ~TeamBase();
 
         // Adds a warrior to warriors
-        void add(Character* warrior);
+        virtual void add(Character* warrior);
 
         // Returns an integer number of surviving group members.
-        int stillAlive();
+        virtual int stillAlive();
 
         // Receives a pointer to an enemy team.
         // Attacking the enemy team will be done in the following way:
@@ -54,7 +54,7 @@ class TeamBase{
         // Ninjas that are less than 1 meter away from the victim will kill the victim, and ninjas that are further away will advance towards the victim.
         // At each stage, if the victim dies a new victim will be chosen (which will be, again, the living enemy character closest to the leader of the attacking team).
         // If there are no living members in the attacking group or the enemy group the attack will end.
-        virtual void attack(Team* otherTeam) const = 0;
+        virtual void attack(TeamBase* otherTeam) const = 0;
 
 
         // Iterates through all team characters and prints their details.
@@ -63,6 +63,10 @@ class TeamBase{
 
 
 };
+
+
+
+
 
 // Iterating through  all members of the team (for the purpose of attack, printing, or comparison) will always be done in the following order:
 // First of all going over all the cowboys, then going over all the ninjas.
@@ -73,7 +77,7 @@ class TeamBase{
 // the first character that was checked between them will be selected.
 
 
-class Team: public TeamBase
+class Team : public TeamBase
 {
 
     private:
@@ -81,15 +85,15 @@ class Team: public TeamBase
     
     public:
     
-        Team();
+        // Team();
 
         Team(Character* leader);
 
 
         // Frees the memory allocated to all characters in the team.
-        ~Team();
+        // ~Team();
 
-        virtual void attack(Team* otherTeam) const override;
+        virtual void attack(TeamBase* otherTeam) const override;
 
         virtual void print() const override;
 
@@ -104,12 +108,30 @@ class Team2 : public TeamBase
 
     public:
 
+        Team2(Character *leader);
+
+        // ~Team2();
+
+        virtual void attack(TeamBase* otherTeam) const override;
+
         virtual void print() const override;
 
-        virtual void attack(Team* otherTeam) const override;
 
 
 
+};
+
+class SmartTeam : public TeamBase
+{
+        public:
+
+        // SmartTeam();
+
+        SmartTeam(Character *leader);
+
+        virtual void attack(TeamBase* otherTeam) const override;
+        
+        virtual void print() const override;
 
 };
 
