@@ -11,9 +11,6 @@ class Ninja : public Character
 
     private:
 
-        // friend class Cowboy;
-
-
     protected:
    
         std::string identifier = "N";
@@ -27,12 +24,12 @@ class Ninja : public Character
     public:
 
         // Receives a pointer to the enemy and goes towards the enemy. The ninja goes a distance equal to its speed
-        virtual void move(Character* enemy) const = 0;
+        virtual void move(Character* enemy) = 0;
 
         // Receives a pointer to the enemy.
         // If the ninja is alive and the enemy is less than 1 meter away, the ninja will cause a damage of 31 hit points to the enemy.
         // Otherwise, no damage will be done to the enemy.
-        virtual void slash(Character* enemy) const = 0;
+        virtual void slash(Character* enemy) const;
 
         virtual std::string print() const = 0;
 
@@ -55,9 +52,7 @@ class YoungNinja : public Ninja
 
         YoungNinja(std::string name, Point loc);
 
-        virtual void move(Character* enemy) const override;
-
-        virtual void slash(Character* enemy) const override;
+        virtual void move(Character* enemy) override;
 
         virtual std::string print() const override;
 
@@ -76,9 +71,7 @@ class TrainedNinja : public Ninja
 
         TrainedNinja(std::string name, Point loc);
         
-        virtual void move(Character* enemy) const override;
-
-        virtual void slash(Character* enemy) const override;
+        virtual void move(Character* enemy) override;
 
         virtual std::string print() const override;
 
@@ -98,9 +91,7 @@ class OldNinja : public Ninja
 
         OldNinja(std::string name, Point loc);
 
-        virtual void move(Character* enemy) const override;
-
-        virtual void slash(Character* enemy) const override;
+        virtual void move(Character* enemy) override;
 
         virtual std::string print() const override;
 

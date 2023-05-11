@@ -23,18 +23,21 @@ class Character{
 
         void setHitPoints(int new_hp);
 
+        void setLocation(Point& loc);
+
+
     public:
 
         Character(std::string name, Point loc, int hp);
 
         // Checks if the character has more than zero hit points
-        bool isAlive();
+        bool isAlive() const;
 
         // Gets a pointer to another character and returns the distance between the characters
-        double distance(Character* other);
+        double distance(const Character* other) const;
 
         // Gets an integer. Subtracts the appropriate amount of hit points from the character. returns nothing.
-        void hit(int hitPoints);
+        void hit(int rdc_hp);
 
         std::string getName();
 

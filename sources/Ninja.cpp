@@ -19,6 +19,13 @@ int Ninja::getSpeed(){
     return this->speed;
 }
 
+void Ninja::slash(Character* enemy) const
+{
+    if(isAlive() && distance(enemy) < 1){
+        enemy->hit(40);
+    }
+}
+
 
 
 //------------- Young Ninja -------------//
@@ -29,17 +36,13 @@ YoungNinja::YoungNinja(std::string name, Point loc) : Ninja(name, loc, 100, 14)
 
 }
 
-void YoungNinja::move(Character* enemy) const
+void YoungNinja::move(Character* enemy)
 {
-    int stam = enemy->getHitPoints();
-
+    Point new_loc = location.moveTowards(location, enemy->getLocation(), speed);
+    this->setLocation(new_loc);
 }
 
-void YoungNinja::slash(Character* enemy) const
-{
-    int stam = enemy->getHitPoints();
 
-}
 
 std::string YoungNinja::print() const {
     
@@ -58,17 +61,13 @@ TrainedNinja::TrainedNinja(std::string name, Point loc) : Ninja(name, loc, 120, 
 }
 
 
-void TrainedNinja::move(Character* enemy) const
+void TrainedNinja::move(Character* enemy)
 {
-    int stam = enemy->getHitPoints();
+    Point new_loc = location.moveTowards(location, enemy->getLocation(), speed);
+    this->setLocation(new_loc);
 
 }
 
-void TrainedNinja::slash(Character* enemy) const
-{
-    int stam = enemy->getHitPoints();
-
-}
 
 std::string TrainedNinja::print() const {
     std::string output = "stam";
@@ -89,15 +88,12 @@ OldNinja::OldNinja(std::string name, Point loc) : Ninja(name, loc, 150, 8)
 }
 
 
-void OldNinja::move(Character* enemy) const
+void OldNinja::move(Character* enemy)
 {
-
+    Point new_loc = location.moveTowards(location, enemy->getLocation(), speed);
+    this->setLocation(new_loc);
 }
 
-void OldNinja::slash(Character* enemy) const
-{
-
-}
 
 std::string OldNinja::print() const
 {

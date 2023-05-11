@@ -26,7 +26,7 @@ Cowboy::~Cowboy()
 
 void Cowboy::shoot(Character* enemy)
 {
-    if(this->isAlive() && this->amountOfBullets > 0){
+    if(isAlive() && hasboolets() > 0){
         enemy->setHitPoints(enemy->getHitPoints() - 10);
         this->amountOfBullets--;
     }
@@ -35,25 +35,34 @@ void Cowboy::shoot(Character* enemy)
 
 bool Cowboy::hasboolets()
 {
-    // if (this->amountOfBullets > 0)
-    // {
-    //     return true;
-    // }
+    if (amountOfBullets > 0)
+    {
+        return true;
+    }
     return false;
     
 }
 
 void Cowboy::reload()
 {
-    // this->amountOfBullets += 6;
+    this->amountOfBullets += 6;
 }
 
 std::string Cowboy::print() const
 {
-    std::string output = this->identifier + ",";
+    
+    std::string output = identifier;
+    if(this->isAlive()){
+        output +=  ", Name: " + name + ", #Hit points: " + std::to_string(hitPoints) + ", Location: "
+                   "(" + std::to_string(location.getX()) +", " + std::to_string(location.getY()) + ")";
+    }
+    else{
+        output +=  ", Name: (" + name + ")";
+    }
     return output;
 }
 
 int Cowboy::getBullets(){
+
     return this->amountOfBullets;
 }

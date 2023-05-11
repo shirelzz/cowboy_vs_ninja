@@ -27,3 +27,22 @@ TEST_CASE("Initalization") {
     CHECK(hodaya->getSpeed() == 12);
 }
 
+TEST_CASE("Point methods") {
+
+}
+
+TEST_CASE("Character methods") {
+    
+}
+
+TEST_CASE("Cowboy methods") {
+    
+}
+
+TEST_CASE("Ninja methods") {
+    
+}
+
+TEST_CASE("More than 10 team members") {
+    
+}

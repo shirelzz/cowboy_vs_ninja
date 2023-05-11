@@ -17,20 +17,25 @@ class Point{
         
         Point();
 
+        Point(const Point& other);
+
         ~Point();
 
-        double distance(Point pnt);
+        double distance(const Point& pnt) const;
 
-        void print();
+        void print() const;
 
         // Gets a source point, destination point and distance.
         // The function returns the closest point to the destination point,
         // which is at most the given distance from the source point
-        Point moveTowards(Point src, Point dest, double dist);
+        Point moveTowards(Point src, Point dest, double dist) const;
 
-        double getX();
+        double getX() const;
 
-        double getY();
+        double getY() const;
+
+        Point& operator=(const Point& other);
+
 
 
 

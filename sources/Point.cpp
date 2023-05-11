@@ -8,36 +8,61 @@ Point::Point(double x, double y) : x(x), y(y) {}
 
 Point::Point() : x(0.0), y(0.0) {}
 
+Point::Point(const Point& other) {
+    x = other.x;
+    y = other.y;
+}
+
+
 Point::~Point()
 {
     // delete this;
 }
 
-double Point::distance(Point pnt)
+double Point::distance(const Point& pnt) const
 {    
-    double dist;
-    // dist = pow((this->x - pnt.x), 2) + pow((this->y - pnt.x), 2);
-    // dist = sqrt(dist);
+    double dist = 0;
+    double dx = x - pnt.getX();
+    double dy = y - pnt.getY();
+
+    dist = sqrt(dx*dx + dy*dy);
+
     return dist;
 }
 
-void Point::print(){
-    // cout << "(" << this->x << "," << this->y << ")" << endl; 
+void Point::print() const{
+    cout << "(" << x << "," << y << ")" << endl; 
 }
 
-Point Point::moveTowards(Point src, Point dest, double dist)
+Point Point::moveTowards(Point src, Point dest, double dist) const
 {
     Point closest(0,0);
+    double src2dest_dist = src.distance(dest);
+    if(src2dest_dist <= dist){
+        return src;
+    }
+
+    double slope = (dest.getY() - this->y) / (dest.getX() - this->x);
 
     return closest;
 }
 
-double Point::getX(){
+double Point::getX() const{
     return this->x;
 }
 
-double Point::getY(){
+double Point::getY() const{
     return this->y;
+}
+
+
+Point& Point::operator=(const Point& other) {
+    if (this != &other) {
+        // clear();
+        x = other.x;
+        y = other.y;
+    }
+    return *this;
 }
 
 

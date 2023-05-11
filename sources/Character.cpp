@@ -4,7 +4,6 @@
 using namespace std;
 
 
-
 Character::Character(std::string name, Point loc, int hp): name(name), location(loc){
 
     if (hp < 0)
@@ -17,23 +16,24 @@ Character::Character(std::string name, Point loc, int hp): name(name), location(
 }
 
 
-bool Character::isAlive()
+bool Character::isAlive() const
 {
-    // if(this->hitPoints > 0){
-    //     return true;
-    // }
+    if(hitPoints > 0){
+        return true;
+    }
     return false;
 }
 
 
-double Character::distance(Character *other)
+double Character::distance(const Character *other) const
 {
-    return 0;
+    return location.distance(other->location);
 }
 
-void Character::hit(int hitPoints)
-{
 
+void Character::hit(int rdc_hp)
+{
+    this->hitPoints -= rdc_hp;
 }
 
 std::string Character::getName()
@@ -44,6 +44,10 @@ std::string Character::getName()
 Point Character::getLocation()
 {
     return this->location;
+}
+
+void Character::setLocation(Point &loc){
+    location = loc;
 }
 
 int Character:: getHitPoints(){
