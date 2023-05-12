@@ -34,17 +34,18 @@ void Point::print() const{
     cout << "(" << x << "," << y << ")" << endl; 
 }
 
-Point Point::moveTowards(Point src, Point dest, double dist) const
+Point Point::moveTowards(Point dest, int dist) const
 {
-    Point closest(0,0);
-    double src2dest_dist = src.distance(dest);
-    if(src2dest_dist <= dist){
-        return src;
+    double src2dest = distance(dest);
+    if(src2dest <= dist){
+        return dest;
     }
 
-    double slope = (dest.getY() - this->y) / (dest.getX() - this->x);
+    double ratio = dist / src2dest;
+    double dx = ratio * (dest.x - x);
+    double dy = ratio * (dest.y - y);
 
-    return closest;
+    return Point(x + dx, y + dy);
 }
 
 double Point::getX() const{
@@ -63,6 +64,11 @@ Point& Point::operator=(const Point& other) {
         y = other.y;
     }
     return *this;
+}
+
+bool Point::operator==(const Point &other) const
+{
+    return (x == other.getX()) && (y == other.getY());
 }
 
 
