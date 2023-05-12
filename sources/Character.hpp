@@ -12,23 +12,24 @@ class Character{
     private:
 
         std::string name;
+        int hitPoints;
+        Point location;
 
         friend class Cowboy;
         friend class Ninja;
 
     protected:
 
-        Point location;
-        int hitPoints;
 
         void setHitPoints(int new_hp);
 
         void setLocation(Point& loc);
 
+        Character(std::string name, Point loc, int hit_pts);
+
 
     public:
 
-        Character(std::string name, Point loc, int hp);
 
         // Checks if the character has more than zero hit points
         bool isAlive() const;

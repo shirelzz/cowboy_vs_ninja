@@ -38,17 +38,20 @@ TEST_CASE("Point methods") {
 
     Point src(2,4);
     Point dest(10,10);
+    double distance = src.distance(dest);
 
-    CHECK(src.moveTowards(dest, 2) == Point(3.6, 5.2)); ////// check for normal case, 0 distnce, great dist, 
-
+    // Check for normal case, 0 distnce, great distance
+    CHECK(src.moveTowards(dest, 2) == Point(3.6, 5.2)); 
+    CHECK(src.moveTowards(dest, 0) == src);
+    CHECK(src.moveTowards(dest, distance) == dest);
 }
 
 TEST_CASE("Character methods") {
 
     YoungNinja *tzav = new YoungNinja("Leonardo", Point(7,7));
+    CHECK_THROWS(new TrainedNinja("Zuz", Point(7,7))); // Can't have two characters at the same location
 
     tzav->hit(100);
-
     CHECK(tzav->getHitPoints() == 0);
     CHECK_THROWS(tzav->hit(1));
 
@@ -73,6 +76,22 @@ TEST_CASE("Cowboy methods") {
     CHECK(boker->getBullets() == 5);
     CHECK(midnight->getHitPoints() == 100);
 
+    // Cowboys shouldn't attack themselves
+    CHECK_THROWS(midnight->shoot(midnight));
+    CHECK(boker->getBullets() == 6);
+
+    // Empty gun
+    boker->shoot(midnight);
+    boker->shoot(midnight);
+    boker->shoot(midnight);
+    boker->shoot(midnight);
+    boker->shoot(midnight);
+
+    CHECK_THROWS(boker->shoot(midnight));
+    boker->reload();
+    CHECK_NOTHROW(boker->shoot(midnight));
+
+
     
 }
 
@@ -80,15 +99,55 @@ TEST_CASE("Ninja methods") {
 
     OldNinja *shem = new OldNinja("Shem", Point(13, 20));
     YoungNinja *tzav = new YoungNinja("Donatello", Point(13,19));
+    TrainedNinja *tzav2 = new TrainedNinja("Michelangelo", Point(14,20));
 
-    tzav->slash(shem);
+    tzav->slash(shem); // Loses 40 pts
     CHECK(shem->getHitPoints() == 110);
+
+    tzav->slash(tzav2); // Doesn't lose any pts
+    CHECK(tzav2->getHitPoints() == 120);
+
+    // Ninjas shouldn't attack themselves
+    CHECK_THROWS(tzav->slash(tzav));
+
+    tzav->move(tzav2);
+    tzav->slash(tzav2); // Should lose 40 pts
+    CHECK(tzav2->getHitPoints() == 80);
+
+
+
+
+
+
 
 
     
 }
 
-TEST_CASE("More than 10 team members") {
+TEST_CASE("Team methods") {
 
-    
+    Cowboy *leader = new Cowboy("Avi", Point(10,10));
+    YoungNinja *pargit = new YoungNinja("Yogi", Point(64,57));
+    Team tim(leader);
+
+    tim.add(pargit);
+    tim.add(new Cowboy("Otis", Point(9,0)));
+    tim.add(new YoungNinja("Nin", Point(91,10)));
+    tim.add(new TrainedNinja("Train", Point(19,0)));
+    tim.add(new OldNinja("Moshe", Point(9,2)));
+    tim.add(new Cowboy("Arik", Point(3,7)));
+    tim.add(new TrainedNinja("Master", Point(8,10)));
+    tim.add(new Cowboy("Mimi", Point(10,6)));
+    tim.add(new YoungNinja("Baby", Point(91,70)));
+
+    // More than 10 team members
+    CHECK_THROWS(tim.add(new Cowboy("Moo", Point(9,0))));
+
+    Team2 tim2(new OldNinja("Shifu", Point(1,1)));
+    tim.attack(&tim2);
+
+    // check with dead leader
+
+
+
 }

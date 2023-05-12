@@ -15,12 +15,9 @@ class Cowboy : public Character
         int amountOfBullets;
         std::string identifier = "C";
 
-        // friend class Ninja;
-
-
     public:
 
-        Cowboy(std::string name, Point loc, int hp, int bullets);
+        Cowboy(std::string name, Point loc, int hit_pts, int bullets);
         Cowboy(std::string name, Point loc);
 
 
@@ -37,7 +34,7 @@ class Cowboy : public Character
         // Loads the gun with six new bullets
         void reload();
 
-        virtual std::string print() const override;
+        std::string print() const override;
 
         int getBullets();
 

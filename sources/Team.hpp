@@ -4,10 +4,15 @@
 namespace ariel{}
 
 # include <iostream>
+# include <array>
 # include <vector>
 # include "Character.hpp"
 # include "Ninja.hpp"
 # include "Cowboy.hpp"
+
+enum {
+    MAX_MEMBERS = 10,
+};
 
 
 //---------------- Team Base ----------------//
@@ -16,27 +21,30 @@ namespace ariel{}
 
 class TeamBase {
 
-    private:
 
-    protected:
+    private:
 
         Character* leader;
 
         // 1st option
-        Character* characters[10];
+        std::array<Character*, MAX_MEMBERS> characterArray;
         int characters_size;
 
         // 2nd option
         std::vector<Character*> warriors;
         int warriors_size(); // At most 10
 
+    protected:
+
+        void replaceLeader();
+
+        Character& chooseVictim(TeamBase *enemyTeam);
+
     public:
 
-        TeamBase();
+        // TeamBase();
 
         TeamBase(Character *leader);
-
-        ~TeamBase();
 
         // Adds a warrior to warriors
         virtual void add(Character* warrior);
@@ -56,10 +64,8 @@ class TeamBase {
         // If there are no living members in the attacking group or the enemy group the attack will end.
         virtual void attack(TeamBase* otherTeam) const = 0;
 
-
         // Iterates through all team characters and prints their details.
         virtual void print() const = 0;
-
 
 
 };
@@ -87,15 +93,17 @@ class Team : public TeamBase
     
         // Team();
 
-        Team(Character* leader);
+        explicit Team(Character* leader);
 
+        // virtual ~Team() = default;
 
-        // Frees the memory allocated to all characters in the team.
-        // ~Team();
+        // Team(const Team&) = delete;
+    
+        // Team& operator=(const Team&) = delete;
 
-        virtual void attack(TeamBase* otherTeam) const override;
+        void attack(TeamBase* otherTeam) const override;
 
-        virtual void print() const override;
+        void print() const override;
 
 };
 
@@ -108,13 +116,19 @@ class Team2 : public TeamBase
 
     public:
 
-        Team2(Character *leader);
+        // Team2();
 
-        // ~Team2();
+        explicit Team2(Character *leader);
 
-        virtual void attack(TeamBase* otherTeam) const override;
+        // virtual ~Team2() = default;
 
-        virtual void print() const override;
+        // Team2(const Team&) = delete;
+        
+        // Team2& operator=(const Team2&) = delete;
+
+        void attack(TeamBase* otherTeam) const override;
+
+        void print() const override;
 
 
 
@@ -127,11 +141,17 @@ class SmartTeam : public TeamBase
 
         // SmartTeam();
 
-        SmartTeam(Character *leader);
+        explicit SmartTeam(Character *leader);
 
-        virtual void attack(TeamBase* otherTeam) const override;
+        // virtual ~SmartTeam() = default;
+
+        SmartTeam(const SmartTeam&) = delete;
         
-        virtual void print() const override;
+        SmartTeam& operator=(const SmartTeam&) = delete;
+
+        void attack(TeamBase* otherTeam) const override;
+        
+        void print() const override;
 
 };
 

@@ -34,8 +34,12 @@ void Point::print() const{
     cout << "(" << x << "," << y << ")" << endl; 
 }
 
-Point Point::moveTowards(Point dest, int dist) const
+Point Point::moveTowards(const Point& dest, int dist) const
 {
+    if (dist == 0){
+        return *this;
+    }
+
     double src2dest = distance(dest);
     if(src2dest <= dist){
         return dest;

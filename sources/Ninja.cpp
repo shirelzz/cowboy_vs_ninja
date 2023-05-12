@@ -15,8 +15,8 @@ Ninja::Ninja(std::string name, Point loc, int hp, int speed): Character(name, lo
     this->speed = speed;
 }
 
-Ninja::~Ninja()
-{}
+// Ninja::~Ninja()
+// {}
 
 int Ninja::getSpeed(){
     return this->speed;
@@ -29,6 +29,10 @@ void Ninja::slash(Character* enemy) const
     }
 }
 
+std::string Ninja::getIdentifier(){
+    return this->identifier;
+}
+
 
 
 //------------- Young Ninja -------------//
@@ -38,11 +42,11 @@ YoungNinja::YoungNinja(std::string name, Point loc) : Ninja(name, loc, 100, 14) 
 
 void YoungNinja::move(Character* enemy)
 {
-    Point new_loc = location.moveTowards(enemy->getLocation(), speed);
+    Point new_loc = getLocation().moveTowards(enemy->getLocation(), speed);
     this->setLocation(new_loc);
 }
 
-YoungNinja::~YoungNinja(){}
+// YoungNinja::~YoungNinja(){}
 
 std::string YoungNinja::print() const {
     
@@ -57,11 +61,11 @@ std::string YoungNinja::print() const {
 
 TrainedNinja::TrainedNinja(std::string name, Point loc) : Ninja(name, loc, 120, 12) {}
 
-TrainedNinja::~TrainedNinja(){}
+// TrainedNinja::~TrainedNinja(){}
 
 void TrainedNinja::move(Character* enemy)
 {
-    Point new_loc = location.moveTowards(enemy->getLocation(), speed);
+    Point new_loc = getLocation().moveTowards(enemy->getLocation(), speed);
     this->setLocation(new_loc);
 
 }
@@ -82,11 +86,11 @@ std::string TrainedNinja::print() const {
 
 OldNinja::OldNinja(std::string name, Point loc) : Ninja(name, loc, 150, 8) {}
 
-OldNinja::~OldNinja(){}
+// OldNinja::~OldNinja(){}
 
 void OldNinja::move(Character* enemy)
 {
-    Point new_loc = location.moveTowards(enemy->getLocation(), speed);
+    Point new_loc = getLocation().moveTowards(enemy->getLocation(), speed);
     this->setLocation(new_loc);
 }
 
