@@ -1,4 +1,8 @@
 # include "Ninja.hpp"
+# include "YoungNinja.hpp"
+# include "TrainedNinja.hpp"
+# include "OldNinja.hpp"
+# include "Point.hpp"
 
 using namespace std;
 
@@ -42,7 +46,7 @@ YoungNinja::YoungNinja(std::string name, Point loc) : Ninja(name, loc, 100, 14) 
 
 void YoungNinja::move(Character* enemy)
 {
-    Point new_loc = getLocation().moveTowards(enemy->getLocation(), speed);
+    Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), speed);
     this->setLocation(new_loc);
 }
 
@@ -65,7 +69,7 @@ TrainedNinja::TrainedNinja(std::string name, Point loc) : Ninja(name, loc, 120, 
 
 void TrainedNinja::move(Character* enemy)
 {
-    Point new_loc = getLocation().moveTowards(enemy->getLocation(), speed);
+    Point new_loc = Point::moveTowards(this->getLocation(), enemy->getLocation(), speed);
     this->setLocation(new_loc);
 
 }
@@ -90,7 +94,7 @@ OldNinja::OldNinja(std::string name, Point loc) : Ninja(name, loc, 150, 8) {}
 
 void OldNinja::move(Character* enemy)
 {
-    Point new_loc = getLocation().moveTowards(enemy->getLocation(), speed);
+    Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), speed);
     this->setLocation(new_loc);
 }
 

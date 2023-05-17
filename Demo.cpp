@@ -26,15 +26,26 @@ int main() {
     cout << tom->print() <<endl;
 
     sushi->move(tom);
+    cout << "1" << endl;
     sushi->slash(tom);
+      cout << "2" << endl;
+
 
     Team team_A(tom); 
+   cout << "3" << endl;
+
     team_A.add(new YoungNinja("Yogi", Point(64,57)));
+        cout << "4" << endl;
+
 
     // Team b(tom); should throw tom is already in team a
 
      Team team_B(sushi);
+         cout << "5" << endl;
+
      team_B.add(new TrainedNinja("Hikari", Point(12,81)));
+         cout << "6" << endl;
+
 
 
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){

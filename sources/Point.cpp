@@ -34,22 +34,22 @@ void Point::print() const{
     cout << "(" << x << "," << y << ")" << endl; 
 }
 
-Point Point::moveTowards(const Point& dest, int dist) const
+Point Point::moveTowards(const Point& src, const Point& dest, int dist)
 {
     if (dist == 0){
-        return *this;
+        return src;
     }
 
-    double src2dest = distance(dest);
+    double src2dest = src.distance(dest);
     if(src2dest <= dist){
         return dest;
     }
 
     double ratio = dist / src2dest;
-    double dx = ratio * (dest.x - x);
-    double dy = ratio * (dest.y - y);
+    double dx = ratio * (dest.x - src.x);
+    double dy = ratio * (dest.y - src.y);
 
-    return Point(x + dx, y + dy);
+    return Point(src.x + dx, src.y + dy);
 }
 
 double Point::getX() const{
@@ -62,7 +62,7 @@ double Point::getY() const{
 
 
 Point& Point::operator=(const Point& other) {
-    if (this != &other) {
+    if (this != &other) { // checks if they are not the same to avoid self-assignment
         // clear();
         x = other.x;
         y = other.y;

@@ -1,59 +1,8 @@
 # include "Team.hpp"
+# include "Team2.hpp"
+# include "SmartTeam.hpp"
 
 using namespace std;
-
-//-------------- Team Base --------------//
-
-TeamBase:: TeamBase(Character *leader) : leader(leader)
-{
-    // if (leader == nullptr)
-    // {
-    //     throw std::runtime_error("Leader is null");
-    // }
-    this->leader = leader;
-}
-
-// TeamBase::TeamBase() : leader(nullptr){}
-
-void TeamBase::replaceLeader(){
-    // iterate over all team members and choose the one closest to the current (dead) leader
-    // leader = new_leader;
-
-}
-
-Character& TeamBase::chooseVictim(TeamBase *enemyTeam){
-    // iterate over all team members and choose the one closest to the current leader
-    // the victim has to be alive
-    return *leader;
-
-}
-
-int TeamBase::warriors_size(){
-    return this->warriors.size();
-}
-
-
-void TeamBase::add(Character *warrior)
-{
-    // if (this->warriors_size() > 10)
-    // {
-    //     throw std::runtime_error("The team is fully populated");
-    // }
-
-    // this->warriors.push_back(warrior);
-    
-}
-
-
-int TeamBase::stillAlive()
-{
-
-    return 0;
-}
-
-
-
-
 
 //-------------- Team --------------//
 
@@ -61,12 +10,20 @@ int TeamBase::stillAlive()
 // Team::Team() : TeamBase(nullptr){}
 
 
-Team::Team(Character *leader) : TeamBase(leader)
+Team::Team(Character *leader) : leader(leader)
 {
 
 }
 
-void Team::attack(TeamBase* otherTeam) const {
+void Team::add(Character *warrior){
+
+}
+
+int Team::stillAlive(){
+    return 0;
+}
+
+void Team::attack(Team* otherTeam) const {
 
     // check if leader alive
     // if dead replaceLeader();
@@ -81,23 +38,53 @@ void Team::attack(TeamBase* otherTeam) const {
 
 void Team::print() const{}
 
+void Team::replaceLeader(){
+    // iterate over all team members and choose the one closest to the current (dead) leader
+    // leader = new_leader;
 
+}
 
+Character& Team::chooseVictim(Team *enemyTeam){
+    // iterate over all team members and choose the one closest to the current leader
+    // the victim has to be alive
+    return *leader;
 
+}
+
+int Team::warriors_size(){
+    return this->warriors.size();
+}
 
 //-------------- Team 2 --------------//
 
 // Team2::Team2() : TeamBase(nullptr){}
 
-Team2::Team2(Character *leader) : TeamBase(leader) {}
+Team2::Team2(Character *leader) : Team(leader) {}
 
 void Team2::print() const {
 
 }
 
-void Team2::attack(TeamBase* otherTeam) const
+void Team2::attack(Team* otherTeam) const
 {
 
+}
+
+void Team2::replaceLeader(){
+    // iterate over all team members and choose the one closest to the current (dead) leader
+    // leader = new_leader;
+
+}
+
+Character& Team2::chooseVictim(Team *enemyTeam){
+    // iterate over all team members and choose the one closest to the current leader
+    // the victim has to be alive
+    return *leader;
+
+}
+
+int Team2::warriors_size(){
+    return this->warriors.size();
 }
 
 
@@ -105,13 +92,32 @@ void Team2::attack(TeamBase* otherTeam) const
 
 // SmartTeam::SmartTeam() : TeamBase(nullptr){}
 
-SmartTeam::SmartTeam(Character *leader) : TeamBase(leader) {}
+SmartTeam::SmartTeam(Character *leader) : Team(leader) {
+
+}
 
 void SmartTeam::print() const{
 
 }
 
-void SmartTeam::attack(TeamBase* otherTeam) const{
+void SmartTeam::attack(Team* otherTeam) const{
 
+}
+
+void SmartTeam::replaceLeader(){
+    // iterate over all team members and choose the one closest to the current (dead) leader
+    // leader = new_leader;
+
+}
+
+Character& SmartTeam::chooseVictim(Team *enemyTeam){
+    // iterate over all team members and choose the one closest to the current leader
+    // the victim has to be alive
+    return *leader;
+
+}
+
+int SmartTeam::warriors_size(){
+    return this->warriors.size();
 }
 

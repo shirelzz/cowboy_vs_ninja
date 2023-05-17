@@ -40,63 +40,8 @@ class Ninja : public Character
 };
 
 
-class YoungNinja : public Ninja
-{
-
-    private:
-
-        int speed;
-
-    public:
-
-        explicit YoungNinja(std::string name, Point loc);
-
-        ~YoungNinja() override = default;
-
-        void move(Character* enemy) override;
-
-        std::string print() const override;
 
 
-};
 
-class TrainedNinja : public Ninja
-{
-
-    private:
-
-        int speed;
-
-    public:
-
-        explicit TrainedNinja(std::string name, Point loc);
-
-        ~TrainedNinja() override = default;
-        
-        void move(Character* enemy) override;
-
-        std::string print() const override;
-
-};
-
-class OldNinja : public Ninja
-{   
-
-    private:
-
-        int speed;
-
-    public:
-
-        explicit OldNinja(std::string name, Point loc);
-
-        ~OldNinja() override = default;
-
-        void move(Character* enemy) override;
-
-        std::string print() const override;
-
-
-};
 
 #endif

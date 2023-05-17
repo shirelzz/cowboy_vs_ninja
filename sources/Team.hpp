@@ -1,26 +1,37 @@
-#ifndef TEAMBASE_HPP
-#define TEAMBASE_HPP
+#ifndef TEAM_HPP
+#define TEAM_HPP
 
 namespace ariel{}
 
 # include <iostream>
 # include <array>
 # include <vector>
+
 # include "Character.hpp"
-# include "Ninja.hpp"
 # include "Cowboy.hpp"
+# include "Ninja.hpp"
+# include "YoungNinja.hpp"
+# include "TrainedNinja.hpp"
+# include "OldNinja.hpp"
 
 enum {
     MAX_MEMBERS = 10,
 };
 
-
-//---------------- Team Base ----------------//
-
 // When a team is created, it gets a pointer to the leader.
 
-class TeamBase {
 
+// Iterating through  all members of the team (for the purpose of attack, printing, or comparison) will always be done in the following order:
+// First of all going over all the cowboys, then going over all the ninjas.
+// Within each group, the transition will be made according to the order in which the characters were added.
+// The purpose of the requirement to split between cowboys and ninjas in this section is to make it easier for you.
+// If you find that the requirement complicates the implementation, think about another implementation.
+// When looking for the closest character, and two characters are at the same distance,
+// the first character that was checked between them will be selected.
+
+
+class Team
+{
 
     private:
 
@@ -36,15 +47,21 @@ class TeamBase {
 
     protected:
 
-        void replaceLeader();
+        virtual void replaceLeader();
 
-        Character& chooseVictim(TeamBase *enemyTeam);
-
+        virtual Character& chooseVictim(Team *enemyTeam);
+    
     public:
+    
+        // Team();
 
-        // TeamBase();
+        Team(Character* leader);
 
-        TeamBase(Character *leader);
+        // virtual ~Team() = default;
+
+        // Team(const Team&) = delete;
+    
+        // Team& operator=(const Team&) = delete;
 
         // Adds a warrior to warriors
         virtual void add(Character* warrior);
@@ -62,96 +79,10 @@ class TeamBase {
         // Ninjas that are less than 1 meter away from the victim will kill the victim, and ninjas that are further away will advance towards the victim.
         // At each stage, if the victim dies a new victim will be chosen (which will be, again, the living enemy character closest to the leader of the attacking team).
         // If there are no living members in the attacking group or the enemy group the attack will end.
-        virtual void attack(TeamBase* otherTeam) const = 0;
+        virtual void attack(Team* otherTeam) const;
 
         // Iterates through all team characters and prints their details.
-        virtual void print() const = 0;
-
-
-};
-
-
-
-
-
-// Iterating through  all members of the team (for the purpose of attack, printing, or comparison) will always be done in the following order:
-// First of all going over all the cowboys, then going over all the ninjas.
-// Within each group, the transition will be made according to the order in which the characters were added.
-// The purpose of the requirement to split between cowboys and ninjas in this section is to make it easier for you.
-// If you find that the requirement complicates the implementation, think about another implementation.
-// When looking for the closest character, and two characters are at the same distance,
-// the first character that was checked between them will be selected.
-
-
-class Team : public TeamBase
-{
-
-    private:
-
-    
-    public:
-    
-        // Team();
-
-        explicit Team(Character* leader);
-
-        // virtual ~Team() = default;
-
-        // Team(const Team&) = delete;
-    
-        // Team& operator=(const Team&) = delete;
-
-        void attack(TeamBase* otherTeam) const override;
-
-        void print() const override;
-
-};
-
-
-
-// The same as team, but the transition to the characters will be according to the order of addition without distinguishing cowboys or ninjas
-class Team2 : public TeamBase
-{
-
-
-    public:
-
-        // Team2();
-
-        explicit Team2(Character *leader);
-
-        // virtual ~Team2() = default;
-
-        // Team2(const Team&) = delete;
-        
-        // Team2& operator=(const Team2&) = delete;
-
-        void attack(TeamBase* otherTeam) const override;
-
-        void print() const override;
-
-
-
-
-};
-
-class SmartTeam : public TeamBase
-{
-        public:
-
-        // SmartTeam();
-
-        explicit SmartTeam(Character *leader);
-
-        // virtual ~SmartTeam() = default;
-
-        SmartTeam(const SmartTeam&) = delete;
-        
-        SmartTeam& operator=(const SmartTeam&) = delete;
-
-        void attack(TeamBase* otherTeam) const override;
-        
-        void print() const override;
+        virtual void print() const;
 
 };
 
