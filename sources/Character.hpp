@@ -14,9 +14,12 @@ class Character{
         std::string name;
         int hitPoints;
         Point location;
+        bool mode;
 
         friend class Cowboy;
         friend class Ninja;
+        friend class Team;
+        friend class Team2;
 
     protected:
 
@@ -26,6 +29,10 @@ class Character{
         void setLocation(Point& loc);
 
         Character(std::string name, Point loc, int hit_pts);
+
+        bool inTeam();
+
+        void changeMode();
 
 
     public:
@@ -40,16 +47,18 @@ class Character{
         // Gets an integer. Subtracts the appropriate amount of hit points from the character. returns nothing.
         void hit(int rdc_hp);
 
-        std::string getName();
+        std::string getName() const;
 
-        Point getLocation();
+        Point getLocation() const;
 
-        int getHitPoints();
+        int getHitPoints() const;
 
         // Prints the name of the character, the number of its hit points, and the point where the character is.
         // If the character dies the number of its hit points will not be printed, and the character's name will appear in parentheses.
         // Before the name will appear a letter indicating the type of character: N for ninja and C for cowboy
         virtual std::string print() const = 0;
+
+        std::string identifier() const;
 
 
 };

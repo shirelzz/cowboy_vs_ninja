@@ -28,6 +28,21 @@ int Ninja::getSpeed(){
 
 void Ninja::slash(Character* enemy) const
 {
+    if (this == enemy)
+    {
+        throw std::runtime_error("Self harm (ninja)");
+    }
+
+    if (!enemy->isAlive())
+    {
+        throw std::runtime_error("Enemy is dead (ninja)");
+    }
+
+    if (!isAlive())
+    {
+        throw std::runtime_error("Attacker is dead (ninja)");
+    }
+    
     if(isAlive() && distance(enemy) < 1){
         enemy->hit(40);
     }
@@ -35,6 +50,21 @@ void Ninja::slash(Character* enemy) const
 
 std::string Ninja::getIdentifier(){
     return this->identifier;
+}
+
+std::string Ninja::print() const {
+
+    std::string output = "N";
+    std::string loc = "(" + std::to_string(this->getLocation().getX()) +", " + std::to_string(this->getLocation().getY()) + ")";
+
+    if(this->isAlive()){
+        output +=  ", Name: " + this->getName() + ", Hit Points: " + std::to_string(this->getHitPoints()) + loc;
+    }
+    else{
+        output +=  " (" + name + ")" + loc;
+    }
+    
+    return output;
 }
 
 
@@ -52,12 +82,6 @@ void YoungNinja::move(Character* enemy)
 
 // YoungNinja::~YoungNinja(){}
 
-std::string YoungNinja::print() const {
-    
-    std::string output = "stam";
-    // output += this->identifier + ",";
-    return output;
-}
 
 
 
@@ -75,13 +99,6 @@ void TrainedNinja::move(Character* enemy)
 }
 
 
-std::string TrainedNinja::print() const {
-    std::string output = "stam";
-    // output += this->identifier + ",";
-    return output;
-}
-
-
 
 
 
@@ -96,14 +113,6 @@ void OldNinja::move(Character* enemy)
 {
     Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), speed);
     this->setLocation(new_loc);
-}
-
-
-std::string OldNinja::print() const
-{
-    std::string output = "";
-    // output += this->identifier + ",";
-    return output;
 }
 
 

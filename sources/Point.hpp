@@ -28,7 +28,7 @@ class Point{
         // Gets a source point, destination point and distance.
         // The function returns the closest point to the destination point,
         // which is at most the given distance from the source point
-        static Point moveTowards(const Point& src, const Point& dest, int dist);
+        static Point moveTowards(const Point& src, const Point& dest, double dist);
 
         double getX() const;
 

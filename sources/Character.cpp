@@ -8,9 +8,10 @@ Character::Character(std::string name, Point loc, int hp): name(name), location(
 
     if (hp < 0)
     {
-        throw std::runtime_error("Negative number of hit points is impossible");
+        throw std::invalid_argument("Negative number of hit points is impossible");
     }
-
+    
+    this->mode = false;
     this->hitPoints = hp;
     
 }
@@ -33,15 +34,18 @@ double Character::distance(const Character *other) const
 
 void Character::hit(int rdc_hp)
 {
+    if (rdc_hp < 0){
+        throw std::invalid_argument("Number of hit points to deduct is negative");
+    }
     this->hitPoints -= rdc_hp;
 }
 
-std::string Character::getName()
+std::string Character::getName() const
 {
     return this->name;
 }
 
-Point Character::getLocation()
+Point Character::getLocation() const
 {
     return this->location;
 }
@@ -50,10 +54,36 @@ void Character::setLocation(Point &loc){
     location = loc;
 }
 
-int Character:: getHitPoints(){
+int Character:: getHitPoints() const
+{
     return this->hitPoints;
 }
 
 void Character::setHitPoints(int new_hp){
     this->hitPoints = new_hp;
+}
+
+std::string Character::identifier() const
+{
+    if (this->print()[0] == 'N')
+    {
+        return "N";
+    }
+    else if (this->print()[0] == 'C')
+    {
+        return "C";
+    }
+    else{
+        return "No id";
+    }
+}
+
+bool Character::inTeam()
+{
+    return mode;
+}
+
+void Character::changeMode()
+{
+    this->mode = !mode;
 }

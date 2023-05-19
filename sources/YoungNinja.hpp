@@ -19,9 +19,6 @@ class YoungNinja : public Ninja
 
         void move(Character* enemy) override;
 
-        std::string print() const override;
-
-
 };
 
 #endif

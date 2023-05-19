@@ -4,7 +4,8 @@
 # include "Team.hpp"
 
 
-// The same as team, but the transition to the characters will be according to the order of addition without distinguishing cowboys or ninjas
+// The same as team, but the iterating through the characters will be 
+// according to the order of addition without distinguishing cowboys or ninjas
 class Team2 : public Team
 {
 
@@ -13,12 +14,11 @@ class Team2 : public Team
         Character* leader;
 
         // 1st option
-        std::array<Character*, MAX_MEMBERS> characterArray;
-        int characters_size;
+        // std::array<Character*, MAX_MEMBERS> characterArray;
+        // int characters_size;
 
         // 2nd option
-        std::vector<Character*> warriors;
-        int warriors_size(); // At most 10
+        std::vector<Character*> warriors2;
 
     public:
 
@@ -32,13 +32,18 @@ class Team2 : public Team
         
         // Team2& operator=(const Team2&) = delete;
 
-        void attack(Team* otherTeam) const override;
+        void add(Character* warrior) override;
+
+        void attack(Team* otherTeam) override;
 
         void print() const override;
 
         void replaceLeader() override;
 
-        Character& chooseVictim(Team *enemyTeam) override;
+        Character* chooseVictim(Team *enemyTeam) override;
+
+        // Returns an integer number of surviving group members.
+        int stillAlive() const override;
 
 
 

@@ -26,7 +26,23 @@ Cowboy::~Cowboy()
 
 void Cowboy::shoot(Character* enemy)
 {
-    if(isAlive() && hasboolets() > 0){
+    if (this == enemy)
+    {
+        throw std::runtime_error("Self harm (cowboy)");
+    }
+
+    if (!enemy->isAlive())
+    {
+        throw std::runtime_error("Enemy is dead (cowboy)");
+    }
+
+    if (!isAlive())
+    {
+        throw std::runtime_error("Attacker is dead (cowboy)");
+    }
+    
+    
+    if(isAlive() && hasboolets()){
         enemy->setHitPoints(enemy->getHitPoints() - 10);
         this->amountOfBullets--;
     }
@@ -45,20 +61,26 @@ bool Cowboy::hasboolets()
 
 void Cowboy::reload()
 {
+    if (!isAlive())
+    {
+        throw std::runtime_error("Cowboy is dead");
+    }
+    
     this->amountOfBullets += 6;
 }
 
 std::string Cowboy::print() const
 {
-    
-    std::string output = identifier;
+    std::string output = "C";
+    std::string loc = "(" + std::to_string(location.getX()) +", " + std::to_string(location.getY()) + ")";
+
     if(this->isAlive()){
-        output +=  ", Name: " + name + ", #Hit points: " + std::to_string(hitPoints) + ", Location: "
-                   "(" + std::to_string(location.getX()) +", " + std::to_string(location.getY()) + ")";
+        output +=  ", Name: " + name + ", Hit Points: " + std::to_string(hitPoints) + loc;
     }
     else{
-        output +=  ", Name: (" + name + ")";
+        output +=  " (" + name + ")" + loc;
     }
+    
     return output;
 }
 

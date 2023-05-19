@@ -7,9 +7,9 @@ namespace ariel{}
 # include <array>
 # include <vector>
 
-# include "Character.hpp"
+// # include "Character.hpp"
 # include "Cowboy.hpp"
-# include "Ninja.hpp"
+// # include "Ninja.hpp"
 # include "YoungNinja.hpp"
 # include "TrainedNinja.hpp"
 # include "OldNinja.hpp"
@@ -38,19 +38,25 @@ class Team
         Character* leader;
 
         // 1st option
-        std::array<Character*, MAX_MEMBERS> characterArray;
-        int characters_size;
+        // std::array<Character*, MAX_MEMBERS> characterArray;
+        // int characters_size;
 
         // 2nd option
         std::vector<Character*> warriors;
-        int warriors_size(); // At most 10
 
     protected:
 
         virtual void replaceLeader();
 
-        virtual Character& chooseVictim(Team *enemyTeam);
+        virtual Character* chooseVictim(Team *enemyTeam);
     
+        int warriors_size() const; // At most 10
+
+        // std::vector<Character*> getWarriors();
+
+        // std::vector<Character*> getWarriors() const;
+
+
     public:
     
         // Team();
@@ -67,7 +73,7 @@ class Team
         virtual void add(Character* warrior);
 
         // Returns an integer number of surviving group members.
-        virtual int stillAlive();
+        virtual int stillAlive() const;
 
         // Receives a pointer to an enemy team.
         // Attacking the enemy team will be done in the following way:
@@ -79,7 +85,7 @@ class Team
         // Ninjas that are less than 1 meter away from the victim will kill the victim, and ninjas that are further away will advance towards the victim.
         // At each stage, if the victim dies a new victim will be chosen (which will be, again, the living enemy character closest to the leader of the attacking team).
         // If there are no living members in the attacking group or the enemy group the attack will end.
-        virtual void attack(Team* otherTeam) const;
+        virtual void attack(Team* otherTeam);
 
         // Iterates through all team characters and prints their details.
         virtual void print() const;

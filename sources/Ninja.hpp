@@ -28,7 +28,7 @@ class Ninja : public Character
         // Receives a pointer to the enemy and goes towards the enemy. The ninja goes a distance equal to its speed
         virtual void move(Character* enemy) = 0;
 
-        virtual std::string print() const = 0;
+        std::string print() const;
 
         // Receives a pointer to the enemy.
         // If the ninja is alive and the enemy is less than 1 meter away, the ninja will cause a damage of 40 hit points to the enemy.

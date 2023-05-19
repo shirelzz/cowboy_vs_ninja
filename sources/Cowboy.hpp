@@ -23,9 +23,9 @@ class Cowboy : public Character
 
         ~Cowboy();
 
-        //receives a pointer to the enemy. If the morning is not dead and he has bullets left,
-        //the cowboy shoots the enemy, subtracts 01 hit points from the enemy - and loses 1 bullet. 
-        //Otherwise, no damage will be done to the enemy.
+        // Receives a pointer to the enemy. If the cowboy is not dead and he has bullets left,
+        // the cowboy shoots the enemy, subtracts 10 hit points from the enemy - and loses 1 bullet. 
+        // Otherwise, no damage will be done to the enemy.
         void shoot(Character* enemy);
 
         // Checks wether there are any bullets left in this cowboy's gun

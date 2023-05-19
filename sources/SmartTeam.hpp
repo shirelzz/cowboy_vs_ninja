@@ -17,7 +17,7 @@ class SmartTeam : public Team
 
         // 2nd option
         std::vector<Character*> warriors;
-        int warriors_size(); // At most 10
+        // int warriors_size(); // At most 10
 
     public:
 
@@ -31,13 +31,13 @@ class SmartTeam : public Team
         
         SmartTeam& operator=(const SmartTeam&) = delete;
 
-        void attack(Team* otherTeam) const override;
+        void attack(Team* otherTeam) override;
         
         void print() const override;
 
         void replaceLeader() override;
 
-        Character& chooseVictim(Team *enemyTeam) override;
+        Character* chooseVictim(Team *enemyTeam) override;
 
 };
 
