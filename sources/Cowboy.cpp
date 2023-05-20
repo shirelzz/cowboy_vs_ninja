@@ -11,6 +11,8 @@ Cowboy::Cowboy(std::string name, Point loc, int hp, int bullets)
     }
     
     this->amountOfBullets = bullets;
+    this->mode = false;
+
 }
 
 // A cowboy is created with six bullets and 11 hit points.
@@ -65,8 +67,9 @@ void Cowboy::reload()
     {
         throw std::runtime_error("Cowboy is dead");
     }
-    
-    this->amountOfBullets += 6;
+
+    int bullets = 6 - amountOfBullets;
+    this->amountOfBullets += bullets;
 }
 
 std::string Cowboy::print() const

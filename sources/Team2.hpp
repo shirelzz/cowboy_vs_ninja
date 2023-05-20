@@ -18,7 +18,7 @@ class Team2 : public Team
         // int characters_size;
 
         // 2nd option
-        std::vector<Character*> warriors2;
+        // std::vector<Character*> warriors2;
 
     public:
 

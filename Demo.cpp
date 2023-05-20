@@ -87,6 +87,8 @@ int main() {
     Team team1(nin);
     Team2 team2(cow);
     cout << "team1 alive? " << team1.stillAlive() << ", team2 alive? " << team2.stillAlive() << endl; // true
+    cout << "nin in team? " << nin->isAlive() << endl;
+    cout << "cow in team?" << cow->isAlive() << endl;
 
     team1.add(new TrainedNinja("l", Point(0,1)));
     team2.add(new Cowboy("c", Point(8,9)));

@@ -17,6 +17,8 @@ Ninja::Ninja(std::string name, Point loc, int hp, int speed): Character(name, lo
     }
 
     this->speed = speed;
+    this->mode = false;
+
 }
 
 // Ninja::~Ninja()
@@ -76,7 +78,7 @@ YoungNinja::YoungNinja(std::string name, Point loc) : Ninja(name, loc, 100, 14) 
 
 void YoungNinja::move(Character* enemy)
 {
-    Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), speed);
+    Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), 14);
     this->setLocation(new_loc);
 }
 
@@ -93,7 +95,7 @@ TrainedNinja::TrainedNinja(std::string name, Point loc) : Ninja(name, loc, 120, 
 
 void TrainedNinja::move(Character* enemy)
 {
-    Point new_loc = Point::moveTowards(this->getLocation(), enemy->getLocation(), speed);
+    Point new_loc = Point::moveTowards(this->getLocation(), enemy->getLocation(), 12);
     this->setLocation(new_loc);
 
 }
@@ -111,7 +113,7 @@ OldNinja::OldNinja(std::string name, Point loc) : Ninja(name, loc, 150, 8) {}
 
 void OldNinja::move(Character* enemy)
 {
-    Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), speed);
+    Point new_loc = Point::moveTowards(getLocation(), enemy->getLocation(), 8);
     this->setLocation(new_loc);
 }
 

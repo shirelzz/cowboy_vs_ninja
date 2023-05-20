@@ -44,6 +44,9 @@ class Team
         // 2nd option
         std::vector<Character*> warriors;
 
+        friend class Team2;
+        friend class SmartTeam;
+
     protected:
 
         virtual void replaceLeader();
@@ -52,9 +55,13 @@ class Team
     
         int warriors_size() const; // At most 10
 
-        // std::vector<Character*> getWarriors();
+        std::vector<Character*> getWarriors();
 
-        // std::vector<Character*> getWarriors() const;
+        std::vector<Character*> getWarriors() const;
+
+        Character* getLeader();
+
+        Character* getLeader() const;
 
 
     public:

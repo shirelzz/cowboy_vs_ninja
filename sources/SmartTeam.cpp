@@ -8,7 +8,6 @@ using namespace std;
 // SmartTeam::SmartTeam() : TeamBase(nullptr){}
 
 SmartTeam::SmartTeam(Character *leader) : Team(leader) {
-    add(leader);
 
 }
 

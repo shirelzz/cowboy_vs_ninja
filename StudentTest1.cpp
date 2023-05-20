@@ -221,18 +221,20 @@ TEST_SUITE("Battle related methods") {
             }
         };
 
-        shoot(6);
+        //6 //150
+
+        shoot(6); //0 //90
         CHECK_FALSE(cowboy->hasboolets());
         CHECK_NOTHROW(cowboy->shoot(target)); // This should not damage the target
-        cowboy->reload();
+        cowboy->reload(); //6 //90
 
-        shoot(2);
-        cowboy->reload();
-        shoot(6);
+        shoot(2); //4 //70
+        cowboy->reload(); //6
+        shoot(6); //0 //10
         CHECK(target->isAlive()); // Target should still be alive with 10 hit points if the cowboys damage is 10
-        shoot(1);
+        shoot(1); //0 //10
         CHECK(target->isAlive()); // Reloading when the magazine isn't empty shouldn't result in more than 6 bullets, the previous shoot should have no effect
-        cowboy->reload();
+        cowboy->reload(); //6
         shoot(1);
         CHECK_FALSE(target->isAlive()); // Target should be dead
         delete cowboy;

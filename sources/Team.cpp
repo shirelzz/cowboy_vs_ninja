@@ -12,27 +12,39 @@ Team::Team(Character *leader) : leader(leader)
     {
         throw std::runtime_error("The leader is already in a different team");
     }
+    // cout<< "building" << endl;
+
     
     add(leader);
-    leader->changeMode();
+    // cout<< "added" << endl;
+
+    // leader->changeMode();
 }
 
 void Team::add(Character *warrior){
+
+    // cout<< "adding" << endl;
 
     if (warriors_size() >= MAX_MEMBERS)
     {
         throw std::runtime_error("The team is full");
     }
+    // cout<< "1 if" << endl;
+
 
     if (warrior == nullptr)
     {
         throw std::invalid_argument("Warrior is a null pointer");
     }
+    // cout<< "2 if" << endl;
+
 
     if (warrior->inTeam())
     {
         throw std::runtime_error("Warrior is already in a team");
     }
+    // cout<< "3 if" << endl;
+
     
 
     if (warrior->identifier() == "C")
@@ -43,7 +55,12 @@ void Team::add(Character *warrior){
     {
         warriors.push_back(warrior);
     }
+    // cout<< "end if" << endl;
+
     warrior->changeMode();
+
+    // cout<< "finish" << endl;
+
 }
 
 int Team::stillAlive() const
@@ -78,10 +95,10 @@ void Team::attack(Team* otherTeam) {
         throw std::invalid_argument("Other team is a null pointer.");
     }
 
-    if (otherTeam->stillAlive() == 0)
-    {
-        throw std::runtime_error("Enemy team is all dead");
-    }
+    // if (otherTeam->stillAlive() == 0)
+    // {
+    //     throw std::runtime_error("Enemy team is all dead");
+    // }
 
     if(!(leader->isAlive())){
         replaceLeader();
@@ -218,7 +235,21 @@ int Team::warriors_size() const{
     return this->warriors.size();
 }
 
-// std::vector<Character *> Team::getWarriors(){
-//     return warriors;
-// }
+std::vector<Character *> Team::getWarriors()
+{
+    return warriors;
+}
+
+std::vector<Character *> Team::getWarriors()const 
+{
+    return warriors;
+}
+
+Character *Team::getLeader() {
+    return leader;
+}
+
+Character *Team::getLeader() const{
+    return leader;
+}
 
