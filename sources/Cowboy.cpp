@@ -16,15 +16,12 @@ Cowboy::Cowboy(std::string name, Point loc, int hp, int bullets)
 }
 
 // A cowboy is created with six bullets and 11 hit points.
-Cowboy::Cowboy(std::string name, Point loc) : Character(name, loc, 110), amountOfBullets(6)
-{
+Cowboy::Cowboy(std::string name, Point loc) : Character(name, loc, 110), amountOfBullets(6) {}
 
-}
+// Cowboy::~Cowboy()
+// {
 
-Cowboy::~Cowboy()
-{
-
-}
+// }
 
 void Cowboy::shoot(Character* enemy)
 {

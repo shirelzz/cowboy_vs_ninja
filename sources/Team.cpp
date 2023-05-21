@@ -1,10 +1,7 @@
 # include "Team.hpp"
-// # include "Team2.hpp"
-// # include "SmartTeam.hpp"
 
 using namespace std;
 
-//-------------- Team --------------//
 
 Team::Team(Character *leader) : leader(leader)
 {
@@ -12,20 +9,30 @@ Team::Team(Character *leader) : leader(leader)
     {
         throw std::runtime_error("The leader is already in a different team");
     }
-    // cout<< "building" << endl;
-
     
     add(leader);
-    // cout<< "added" << endl;
-
-    // leader->changeMode();
 }
 
 Team::~Team()
 {
     for (size_t i = 0; i < warriors_size(); i++)
     {
-        delete warriors.at(i);
+        Character* warrior = warriors.at(i);
+
+        if (warrior == nullptr)
+        {
+            continue;
+        }
+
+        if (warrior->identifier() == "N")
+        {
+            delete dynamic_cast<Ninja*>(warrior);
+        }
+        else if (warrior->identifier() == "C")
+        {
+            delete dynamic_cast<Cowboy*>(warrior);
+        }
+        
     }
 
     leader = nullptr;
@@ -39,7 +46,6 @@ void Team::add(Character *warrior){
     {
         throw std::runtime_error("The team is full");
     }
-
 
     if (warrior == nullptr)
     {
@@ -75,7 +81,14 @@ int Team::stillAlive() const
 
     for (size_t i = 0; i < warriors_size(); i++)
     {
-        if (warriors.at(i)->isAlive())
+        Character* warrior = warriors.at(i);
+
+        if (warrior == nullptr)
+        {
+            continue;
+        }
+
+        if (warrior->isAlive())
         {
             size++;
         }
@@ -112,14 +125,13 @@ void Team::attack(Team* otherTeam) {
 
     if (stillAlive() == 0)
     {
-    //     throw std::runtime_error("Attacking team is dead (Team:attack)");
         return;
     }
 
     if(!(leader->isAlive())){
         replaceLeader();
 
-        if (leader == nullptr) //didnt help
+        if (leader == nullptr)
         {
             return;
         }
@@ -129,7 +141,7 @@ void Team::attack(Team* otherTeam) {
 
     Character* victim = chooseVictim(otherTeam);
 
-    if (victim == nullptr) //didnt help
+    if (victim == nullptr)
     {
         return;
     }
@@ -171,11 +183,6 @@ void Team::attack(Team* otherTeam) {
 
         if (!victim->isAlive())
         {
-            // if (victim == otherTeam->leader)
-            // {
-            //     otherTeam->replaceLeader();
-            // }
-
             victim = chooseVictim(otherTeam);
 
             if (victim == nullptr)
@@ -188,14 +195,9 @@ void Team::attack(Team* otherTeam) {
 
 
 void Team::replaceLeader(){
+
     // iterate over all team members and choose the one closest to the current (dead) leader
     // leader = new_leader;
-
-    if (leader == nullptr) //didnt help
-    {
-        return;
-    }
-    
 
     if (stillAlive() == 0)
     {
@@ -203,7 +205,6 @@ void Team::replaceLeader(){
         return;
     }
     
-
     Character* new_leader = nullptr;
 
     // To initalize new_leader with a valid warrior
@@ -223,17 +224,18 @@ void Team::replaceLeader(){
         return;
     }
 
-
     // To choose new_leader who is valid and closest to the (dead) leader
     for (size_t i = 0; i < warriors_size(); i++)
     {
         Character* warrior = warriors.at(i);
 
-        if (warrior == nullptr) //didnt help
+        if (warrior == nullptr)
         {
             continue;
         }
+
         double dist = warrior->distance(leader);
+
         if (warrior != leader && dist < new_leader->distance(leader) && warrior->isAlive())
         {
             new_leader = warrior;
@@ -250,14 +252,13 @@ Character* Team::chooseVictim(Team *enemyTeam){
     // iterate over all enemyTeam members and choose the one closest to this current leader
     // the victim has to be alive
 
-    if (enemyTeam == nullptr) // didnt help
+    if (enemyTeam == nullptr)
     {
         return nullptr;
     }
     
     if (enemyTeam->stillAlive() == 0)
     {
-        // throw std::runtime_error("Enemy team is all dead (Team:chooseVictim)");
         return nullptr;
     } 
 
@@ -268,7 +269,7 @@ Character* Team::chooseVictim(Team *enemyTeam){
     {
         Character* enemyWarrior = enemyTeam->warriors.at(i);
 
-        if (enemyWarrior == nullptr) //didnt help
+        if (enemyWarrior == nullptr)
         {
             continue;
         }
@@ -281,17 +282,18 @@ Character* Team::chooseVictim(Team *enemyTeam){
         
     }
     
-    // To choose  a victim who is valid and closest to the (dead) leader
+    // To choose a victim who is valid and closest to the (dead) leader
     for (size_t i = 0; i < enemyTeam->warriors_size(); i++)
     {
         Character* enemyWarrior = enemyTeam->warriors.at(i);
 
-        if (enemyWarrior == nullptr) //didnt help
+        if (enemyWarrior == nullptr)
         {
             continue;
         }
 
         double dist = enemyWarrior->distance(leader);
+
         if (dist < victim->distance(leader) && enemyWarrior->isAlive())
         {
             victim = enemyWarrior;
@@ -302,7 +304,8 @@ Character* Team::chooseVictim(Team *enemyTeam){
 
 }
 
-int Team::warriors_size() const{
+int Team::warriors_size() const
+{
     return this->warriors.size();
 }
 
@@ -314,12 +317,12 @@ void Team::print() const{
     {
         Character* warrior = warriors.at(i);
 
-        if (warrior == nullptr) //didnt help
+        if (warrior == nullptr)
         {
             continue;
         }
         
-        output += warrior->print();
+        output += warrior->print() + "\n";
     }
 
     cout << output << endl;

@@ -3,39 +3,63 @@
 
 using namespace std;
 
-//-------------- Smart Team --------------//
 
-// SmartTeam::SmartTeam() : TeamBase(nullptr){}
+SmartTeam::SmartTeam(Character *leader) : Team(leader) {}
 
-SmartTeam::SmartTeam(Character *leader) : Team(leader) {
+void SmartTeam::add(Character *warrior){
 
-}
-
-void SmartTeam::print() const{
-
-}
-
-void SmartTeam::attack(Team* otherTeam){
-
-     if (otherTeam == nullptr)
+    if (warriors_size() >= MAX_MEMBERS)
     {
-        throw std::invalid_argument("Other team is a null pointer.");
+        throw std::runtime_error("The team is full");
     }
+
+    if (warrior == nullptr)
+    {
+        throw std::invalid_argument("Warrior is a null pointer");
+    }
+
+    if (warrior->inTeam())
+    {
+        throw std::runtime_error("Warrior is already in a team");
+    }
+
+    if (warriors_size() == 1 || warriors_size() == 0)
+    {
+        warriors.push_back(warrior);
+        warrior->changeMode();
+        return;
+    }
+    
+    if (warriors_size() > 1)
+    {
+        bool flag = false;
+        for (std::vector<Character*>::size_type i = 0; i < warriors_size(); i++)
+        {
+            Character* currWarrior = warriors.at(i);
+
+            if (currWarrior == nullptr)
+            {
+                continue;
+            }
+            
+            double dist = warrior->distance(leader);
+            double curr_warrior_dist = currWarrior->distance(leader);
+
+            if (dist < curr_warrior_dist)
+            {
+                warriors.insert(warriors.begin() + static_cast<std::vector<Character*>::difference_type>(i), warrior);
+                flag = true;
+                warrior->changeMode();
+                return; 
+            }
+        }
+
+        if (!flag)
+        {
+            warriors.push_back(warrior);
+            warrior->changeMode();
+        }
+                
+    }
+
 }
-
-// void SmartTeam::replaceLeader(){
-//     // iterate over all team members and choose the one closest to the current (dead) leader
-//     // leader = new_leader;
-
-// }
-
-// Character* SmartTeam::chooseVictim(Team *enemyTeam){
-//     // iterate over all team members and choose the one closest to the current leader
-//     // the victim has to be alive
-//     return leader;
-
-// }
-
-// int SmartTeam::warriors_size(){
-//     return this->warriors.size();
-// }

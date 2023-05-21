@@ -14,7 +14,7 @@ class OldNinja : public Ninja
 
         explicit OldNinja(std::string name, Point loc);
 
-        ~OldNinja() override = default;
+        // ~OldNinja() override = default;
 
         // void move(Character* enemy) override;
 

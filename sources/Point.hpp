@@ -19,6 +19,10 @@ class Point{
 
         Point(const Point& other);
 
+        Point(Point&& other) noexcept;
+
+        Point& operator=(Point&& other) noexcept;
+
         ~Point();
 
         double distance(const Point& pnt) const;

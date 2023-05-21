@@ -7,9 +7,7 @@ namespace ariel{}
 # include <array>
 # include <vector>
 
-// # include "Character.hpp"
 # include "Cowboy.hpp"
-// # include "Ninja.hpp"
 # include "YoungNinja.hpp"
 # include "TrainedNinja.hpp"
 # include "OldNinja.hpp"
@@ -19,7 +17,6 @@ enum {
 };
 
 // When a team is created, it gets a pointer to the leader.
-
 
 // Iterating through  all members of the team (for the purpose of attack, printing, or comparison) will always be done in the following order:
 // First of all going over all the cowboys, then going over all the ninjas.
@@ -36,12 +33,6 @@ class Team
     private:
 
         Character* leader;
-
-        // 1st option
-        // std::array<Character*, MAX_MEMBERS> characterArray;
-        // int characters_size;
-
-        // 2nd option
         std::vector<Character*> warriors;
 
         friend class Team2;
@@ -49,13 +40,11 @@ class Team
 
     protected:
 
-        // virtual void replaceLeader();
         void replaceLeader();
 
-        // virtual Character* chooseVictim(Team *enemyTeam);
         Character* chooseVictim(Team *enemyTeam);
     
-        int warriors_size() const; // At most 10
+        int warriors_size() const;
 
         std::vector<Character*> getWarriors();
 
@@ -68,21 +57,19 @@ class Team
 
     public:
     
-        // Team();
-
         Team(Character* leader);
 
-        ~Team();
+        Team(const Team& other) = delete;
+        Team& operator=(const Team& other) = delete;
+        Team(Team&& other) = delete;
+        Team& operator=(Team&& other) = delete;
 
-        // Team(const Team&) = delete;
-    
-        // Team& operator=(const Team&) = delete;
+        virtual ~Team();
 
         // Adds a warrior to warriors
         virtual void add(Character* warrior);
 
         // Returns an integer number of surviving group members.
-        // virtual int stillAlive() const;
         int stillAlive() const;
 
 
@@ -96,10 +83,10 @@ class Team
         // Ninjas that are less than 1 meter away from the victim will kill the victim, and ninjas that are further away will advance towards the victim.
         // At each stage, if the victim dies a new victim will be chosen (which will be, again, the living enemy character closest to the leader of the attacking team).
         // If there are no living members in the attacking group or the enemy group the attack will end.
-        virtual void attack(Team* otherTeam);
+        void attack(Team* otherTeam);
 
         // Iterates through all team characters and prints their details.
-        virtual void print() const;
+        void print() const;
 
 };
 

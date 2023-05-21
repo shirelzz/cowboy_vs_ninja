@@ -18,7 +18,7 @@ Character::Character(std::string name, Point loc, int hp): name(name), location(
 
 
 bool Character::isAlive() const
-{
+{    
     if(hitPoints > 0){
         return true;
     }

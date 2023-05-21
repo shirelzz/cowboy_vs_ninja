@@ -13,6 +13,18 @@ Point::Point(const Point& other) {
     y = other.y;
 }
 
+// Move constructor
+Point::Point(Point&& other) noexcept : x(other.x), y(other.y) {}
+
+// Move assignment operator
+Point& Point:: operator=(Point&& other) noexcept {
+    if (this != &other) {
+        x = other.x;
+        y = other.y;
+    }
+    return *this;
+}
+
 
 Point::~Point()
 {

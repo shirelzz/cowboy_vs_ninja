@@ -20,8 +20,12 @@ class Cowboy : public Character
         Cowboy(std::string name, Point loc, int hit_pts, int bullets);
         Cowboy(std::string name, Point loc);
 
+        Cowboy(const Cowboy& other) = delete;
+        Cowboy& operator=(const Cowboy& other) = delete;
+        Cowboy(Cowboy&& other) = delete;
+        Cowboy& operator=(Cowboy&& other) = delete;
 
-        ~Cowboy();
+        virtual ~Cowboy() = default;
 
         // Receives a pointer to the enemy. If the cowboy is not dead and he has bullets left,
         // the cowboy shoots the enemy, subtracts 10 hit points from the enemy - and loses 1 bullet. 

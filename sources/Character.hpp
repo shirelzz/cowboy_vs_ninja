@@ -20,17 +20,22 @@ class Character{
         friend class Ninja;
         friend class Team;
         friend class Team2;
+        friend class SmartTeam;
 
     protected:
 
+        Character(std::string name, Point loc, int hit_pts);
+
+        ~Character() = default;
+
+        Character(const Character& other) = delete;
+        Character& operator=(const Character& other) = delete;
+        Character(Character&& other) = delete;
+        Character& operator=(Character&& other) = delete;
 
         void setHitPoints(int new_hp);
 
         void setLocation(Point& loc);
-
-        Character(std::string name, Point loc, int hit_pts);
-
-        virtual ~Character() = default;
 
         bool inTeam();
 
@@ -38,7 +43,6 @@ class Character{
 
 
     public:
-
 
         // Checks if the character has more than zero hit points
         bool isAlive() const;
@@ -61,7 +65,6 @@ class Character{
         virtual std::string print() const = 0;
 
         std::string identifier() const;
-
 
 };
 
