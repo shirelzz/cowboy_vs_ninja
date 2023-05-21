@@ -8,7 +8,7 @@ class OldNinja : public Ninja
 
     private:
 
-        int speed;
+        // int speed;
 
     public:
 
@@ -16,7 +16,7 @@ class OldNinja : public Ninja
 
         ~OldNinja() override = default;
 
-        void move(Character* enemy) override;
+        // void move(Character* enemy) override;
 
 };
 

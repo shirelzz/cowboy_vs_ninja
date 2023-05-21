@@ -38,12 +38,12 @@ class Team2 : public Team
 
         void print() const override;
 
-        void replaceLeader() override;
+        // void replaceLeader() override;
 
-        Character* chooseVictim(Team *enemyTeam) override;
+        // Character* chooseVictim(Team *enemyTeam) override;
 
         // Returns an integer number of surviving group members.
-        int stillAlive() const override;
+        // int stillAlive() const override;
 
 
 

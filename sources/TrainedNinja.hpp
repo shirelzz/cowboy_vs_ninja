@@ -10,7 +10,7 @@ class TrainedNinja : public Ninja
 
     private:
 
-        int speed;
+    // int speed;
 
     public:
 
@@ -18,7 +18,7 @@ class TrainedNinja : public Ninja
 
         ~TrainedNinja() override = default;
         
-        void move(Character* enemy) override;
+        // void move(Character* enemy) override;
 
 };
 

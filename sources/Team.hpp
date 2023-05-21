@@ -49,9 +49,11 @@ class Team
 
     protected:
 
-        virtual void replaceLeader();
+        // virtual void replaceLeader();
+        void replaceLeader();
 
-        virtual Character* chooseVictim(Team *enemyTeam);
+        // virtual Character* chooseVictim(Team *enemyTeam);
+        Character* chooseVictim(Team *enemyTeam);
     
         int warriors_size() const; // At most 10
 
@@ -70,7 +72,7 @@ class Team
 
         Team(Character* leader);
 
-        // virtual ~Team() = default;
+        ~Team();
 
         // Team(const Team&) = delete;
     
@@ -80,7 +82,9 @@ class Team
         virtual void add(Character* warrior);
 
         // Returns an integer number of surviving group members.
-        virtual int stillAlive() const;
+        // virtual int stillAlive() const;
+        int stillAlive() const;
+
 
         // Receives a pointer to an enemy team.
         // Attacking the enemy team will be done in the following way:

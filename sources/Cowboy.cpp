@@ -75,7 +75,7 @@ void Cowboy::reload()
 std::string Cowboy::print() const
 {
     std::string output = "C";
-    std::string loc = "(" + std::to_string(location.getX()) +", " + std::to_string(location.getY()) + ")";
+    std::string loc = ", (" + std::to_string(location.getX()) +", " + std::to_string(location.getY()) + ").";
 
     if(this->isAlive()){
         output +=  ", Name: " + name + ", Hit Points: " + std::to_string(hitPoints) + loc;

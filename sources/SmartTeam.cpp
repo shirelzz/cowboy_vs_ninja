@@ -23,18 +23,18 @@ void SmartTeam::attack(Team* otherTeam){
     }
 }
 
-void SmartTeam::replaceLeader(){
-    // iterate over all team members and choose the one closest to the current (dead) leader
-    // leader = new_leader;
+// void SmartTeam::replaceLeader(){
+//     // iterate over all team members and choose the one closest to the current (dead) leader
+//     // leader = new_leader;
 
-}
+// }
 
-Character* SmartTeam::chooseVictim(Team *enemyTeam){
-    // iterate over all team members and choose the one closest to the current leader
-    // the victim has to be alive
-    return leader;
+// Character* SmartTeam::chooseVictim(Team *enemyTeam){
+//     // iterate over all team members and choose the one closest to the current leader
+//     // the victim has to be alive
+//     return leader;
 
-}
+// }
 
 // int SmartTeam::warriors_size(){
 //     return this->warriors.size();

@@ -30,6 +30,8 @@ class Character{
 
         Character(std::string name, Point loc, int hit_pts);
 
+        virtual ~Character() = default;
+
         bool inTeam();
 
         void changeMode();

@@ -17,6 +17,7 @@ class Ninja : public Character
     protected:
    
         Ninja(std::string name, Point loc, int hit_pts, int speed);
+        
         virtual ~Ninja() = default;
 
         std::string getIdentifier();
@@ -26,7 +27,9 @@ class Ninja : public Character
     public:
 
         // Receives a pointer to the enemy and goes towards the enemy. The ninja goes a distance equal to its speed
-        virtual void move(Character* enemy) = 0;
+        // virtual void move(Character* enemy) = 0;
+        void move(Character* enemy);
+
 
         std::string print() const;
 

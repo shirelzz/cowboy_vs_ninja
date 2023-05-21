@@ -16,7 +16,7 @@ class SmartTeam : public Team
         int characters_size;
 
         // 2nd option
-        std::vector<Character*> warriors;
+        // std::vector<Character*> warriors;
         // int warriors_size(); // At most 10
 
     public:
@@ -35,9 +35,9 @@ class SmartTeam : public Team
         
         void print() const override;
 
-        void replaceLeader() override;
+        // void replaceLeader() override;
 
-        Character* chooseVictim(Team *enemyTeam) override;
+        // Character* chooseVictim(Team *enemyTeam) override;
 
 };
 
