@@ -4,10 +4,10 @@
 
 using namespace std;
 
+// Constructor
 Point::Point(double x, double y) : x(x), y(y) {}
 
-Point::Point() : x(0.0), y(0.0) {}
-
+// Copy constructor
 Point::Point(const Point& other) {
     x = other.x;
     y = other.y;
@@ -23,12 +23,6 @@ Point& Point:: operator=(Point&& other) noexcept {
         y = other.y;
     }
     return *this;
-}
-
-
-Point::~Point()
-{
-    // delete this;
 }
 
 double Point::distance(const Point& pnt) const
@@ -80,7 +74,6 @@ double Point::getY() const{
 
 Point& Point::operator=(const Point& other) {
     if (this != &other) { // checks if they are not the same to avoid self-assignment
-        // clear();
         x = other.x;
         y = other.y;
     }

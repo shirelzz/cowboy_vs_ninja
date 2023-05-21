@@ -15,15 +15,13 @@ class Point{
 
         Point(double pt_x, double pt_y);
         
-        Point();
-
         Point(const Point& other);
 
         Point(Point&& other) noexcept;
 
         Point& operator=(Point&& other) noexcept;
 
-        ~Point();
+        ~Point() = default;
 
         double distance(const Point& pnt) const;
 

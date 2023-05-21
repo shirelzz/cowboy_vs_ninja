@@ -18,11 +18,6 @@ Cowboy::Cowboy(std::string name, Point loc, int hp, int bullets)
 // A cowboy is created with six bullets and 11 hit points.
 Cowboy::Cowboy(std::string name, Point loc) : Character(name, loc, 110), amountOfBullets(6) {}
 
-// Cowboy::~Cowboy()
-// {
-
-// }
-
 void Cowboy::shoot(Character* enemy)
 {
     if (this == enemy)
@@ -39,7 +34,6 @@ void Cowboy::shoot(Character* enemy)
     {
         throw std::runtime_error("Attacker is dead (cowboy)");
     }
-    
     
     if(isAlive() && hasboolets()){
         enemy->setHitPoints(enemy->getHitPoints() - 10);
@@ -84,7 +78,7 @@ std::string Cowboy::print() const
     return output;
 }
 
-int Cowboy::getBullets(){
-
+int Cowboy::getBullets()
+{
     return this->amountOfBullets;
 }
